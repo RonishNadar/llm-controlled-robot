@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 import numpy as np
 import json
+from dotenv import load_dotenv
+import os
 
 def configure_gemini(api_key):
     genai.configure(api_key=api_key)
@@ -78,7 +80,8 @@ def visualize_points(points, title="Generated Path with Orientations"):
 
 if __name__ == "__main__":
     # Minimal example
-    api_key = "AIzaSyBk5BrXe_jAq8IWw4GlhBNbjuXEllLKwzo"  # Replace with your actual key
+    load_dotenv()
+    api_key = os.getenv("GEMINI_API_KEY")
     prompt = "Give 30 (x, y, theta) points that trace a rectangle of length 200px and width 100px in a 673x673 image. Use radians for theta. Give only the list of points in JSON format. Don't explain and don't hallucinate."
     filename = "points.txt"
 
